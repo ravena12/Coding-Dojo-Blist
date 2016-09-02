@@ -1,0 +1,37 @@
+<div ng-controller='usersController'>
+	<a href='#/dashboard'> BucketList </a> | <a href='#/dashboard'> Home </a> | <a href="" ng-click='logout()'>Logout</a>
+	<p>Welcome, {{current_user.name}}</p>
+	<div ng-controller='itemsController'>
+	<form name='addForm'>
+	<input type='text' name='title' ng-model='newItem.title' ng-minlength='5' required placeholder='Title' >
+	<input type='text' name='description' ng-model='newItem.description' ng-minlength='10' required placeholder='description' >
+	 <input type="hidden"  ng-model = "newItem.user_name" ng-value = "newItem.user_name=current_user">
+		  	Friend:<select ng-model = "newItem.friend">
+            	<option ng-repeat = "user in users">{{user.name}}</option>
+          	</select>
+	<button ng-click ='addItem()'>Create Item </button>
+	</form>
+	<div ng-messages="addForm.title.$error">
+     <p ng-message="minlength"> title must be 5 characters or more.</p>
+     <p ng-message="required"> title is required.</p>
+ </div>
+ <div ng-messages="addForm.description.$error">
+     <p ng-message="minlength"> description must be 10 characters or more.</p>
+     <p ng-message="required"> description is required.</p>
+ </div>
+
+<h4> Before I die I want to </h4>
+<div ng-repeat = "item in items">
+<form>
+			<input type="checkbox"   ng-value="update[item._id].complete=true" ng-Click = "update(item._id)"/><label>{{item._creator.name}} | {{item.title}} - {{item.description}} - {{item.created_at|date:"MMMM dd, yyyy"}}</label><br/>
+	</form>
+	</div>
+
+<h4> List of other users (click to view profile) </h4>
+<div ng-repeat = "user in exclude" > 
+		<a href='#/user/userShow/{{user._id}}' > {{user.name}}</a>
+	</div>
+
+	</div>
+
+</div>

@@ -1,0 +1,13 @@
+<div ng-controller='usersController'>
+
+	<form name='loginForm'>
+		<h2> Bucket List </h2>
+		<input type='text' name='name' ng-model='newUser.name' ng-minlength='3' required>
+		<button value='Login/Register' ng-click='login()'>Login</button>
+	</form>
+	 <div ng-messages="loginForm.name.$error">
+     <p ng-message="minlength"> name is too short.</p>
+     <p ng-message="required"> name is required.</p>
+ </div>
+
+</div>

@@ -1,0 +1,19 @@
+<div ng-controller ='usersController' style="padding: 10px;">
+<a href='#/dashboard'> BucketList </a> | <a href="" ng-click='logout()'>Logout</a> | <a href='#/dashboard'> Home </a>
+
+<p>{{one_user.name}}'s Bucket List </p>
+
+		<h3>Done </h3>
+		<div ng-repeat = "item in one_user._createdItems">
+			<div ng-if = "item.complete == true">
+				<label>{{item.user_name}} | {{item.title}} - {{item.description}} - {{item.createdAt|date:"MMMM dd, yyyy"}}</label><br/>
+			</div>
+		</div>
+		<h3>Pending</h3>
+
+	<div ng-repeat = "item in one_user._createdItems">
+		<div ng-if = "item.complete == false">
+			{{item.user_name}} | {{item.title}} - {{item.description}} - {{item.created_at|date:"MMMM dd, yyyy"}}
+		</div>
+	</div>
+</div>
